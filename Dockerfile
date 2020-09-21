@@ -17,6 +17,7 @@ RUN git clone --depth 1 --branch ${VSCODE_REVISION} https://github.com/microsoft
 
 WORKDIR /vscode
 
+RUN ln -s /usr/bin/python3 /usr/bin/python
 RUN yarn
 
 FROM alpine
