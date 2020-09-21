@@ -20,6 +20,7 @@ WORKDIR /vscode
 RUN ln -s /usr/bin/python3 /usr/bin/python
 RUN yarn
 RUN yarn compile-web
+RUN npm rebuild
 
 FROM alpine
 
