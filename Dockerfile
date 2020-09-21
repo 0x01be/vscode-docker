@@ -24,6 +24,7 @@ FROM alpine
 
 RUN apk add --no-cache --virtual vscode-runtime-dependencies \
     nodejs \
+    yarn \
     libx11 \
     libxkbfile \
     libsecret
