@@ -1,4 +1,4 @@
-FROM alpine
+FROM alpine as build
 
 RUN apk add --no-cache --virtual vscode-build-dependencies \
     git \
@@ -19,9 +19,19 @@ WORKDIR /vscode
 
 RUN yarn
 
+FROM alpine
+
+RUN apk add --no-cache --virtual vscode-runtime-dependencies \
+    nodejs \
+    libx11 \
+    libxkbfile \
+    libsecret
+
+COPY --from=build /vscode /vscode
+
 EXPOSE 8080
 
-WORKDIR /workspace
+WORKDIR /vscode
 
 CMD yarn web --port 8080 --host 0.0.0.0 --scheme http
 
